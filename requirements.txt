@@ -1,0 +1,7 @@
+numpy==1.26.4
+sounddevice==0.4.8
+openai-whisper==20230314
+torch==2.2.0
+rich==13.6.0
+langchain==0.0.352
+langchain-community==0.0.9
