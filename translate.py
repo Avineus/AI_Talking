@@ -83,3 +83,16 @@ def play_audio(sample_rate, audio_array):
     """
     sd.play(audio_array, sample_rate)
     sd.wait()
+
+def play_voice(voice, text):
+    """ 
+    Plays the given audio data using the sounddevice library.
+    Args:   
+        voice (name): The sample rate of the audio data.
+        text (sentence): The audio data to be played.
+    Returns:
+        None
+    """
+    # SAY is for MacOS
+    # Use espeak with mbrola for Linux
+    subprocess.run(["say", "-v", "Samantha", text])

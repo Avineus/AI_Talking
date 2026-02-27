@@ -113,6 +113,28 @@ Controls and behavior:
 
 ```bash
 sudo apt install -y espeak
+mbrola for high quality voice
+
+For MACoS use "say" instead of espeak
+
+  
+$ ollama ps
+NAME             ID              SIZE      PROCESSOR          CONTEXT    UNTIL
+llama2:latest    78e26419b446    6.2 GB    22%/78% CPU/GPU    4096       2 minutes from now
+
+# 1. See what you have
+ollama list
+
+# 2. Delete the large one
+ollama rm llama2
+
+# 3. Pull a smaller one
+ollama pull llama2:7b
+
+% ollama ps
+NAME         ID              SIZE      PROCESSOR          CONTEXT    UNTIL
+llama2:7b    78e26419b446    6.2 GB    22%/78% CPU/GPU    4096       4 minutes from now
+
 ```
 
 - If no audio is recorded, confirm your microphone works and `sounddevice`

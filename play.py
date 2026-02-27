@@ -11,6 +11,7 @@ from translate import (
     get_llm_response,
     get_random_prompt,
     play_audio,
+    play_voice,
 )
 
 
@@ -51,20 +52,21 @@ if __name__ == "__main__":
 
                 if text_key in {"random", "suggest", "suggestion", "advice", "question"}:
                     with console.status("Fetching my mood...", spinner="earth"):
-                        if text_key == "advice":
+                        if text_key == "advice": 
                             prompt_kind = "advice"
                         elif text_key == "question":
                             prompt_kind = "question"
                         else:
                             prompt_kind = "suggestion"
-                        prompt = get_random_prompt(prompt_kind)
-                    console.print(f"[cyan]Assistant {text_key}: {prompt}")
-                    sample_rate, audio_array = tts.long_form_synthesize(prompt)
-                    play_audio(sample_rate, audio_array)
 
-                if text.strip().lower() == "you":
-                    console.print("[red]No speech detected. Please try again.")
-                    text = prompt
+                    if text.strip().lower() == "you":
+                       console.print("[red]No speech detected. Please try again.")
+
+                       prompt = get_random_prompt(prompt_kind)
+                       text = prompt
+                       console.print(f"[cyan]Assistant {text_key}: {prompt}")
+                       sample_rate, audio_array = tts.long_form_synthesize(prompt)
+                       play_audio(sample_rate, audio_array)
 
                 with console.status("Generating response...", spinner="earth"):
                     response = get_llm_response(text)
@@ -72,6 +74,7 @@ if __name__ == "__main__":
 
                 console.print(f"[cyan]Assistant: {response}")
                 play_audio(sample_rate, audio_array)
+                #play_voice("Samantha", response)
             else:
                 console.print(
                     "[red]No audio recorded. Please ensure your microphone is working."

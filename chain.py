@@ -48,5 +48,7 @@ class SimpleConversationChain:
         self.history.append(f"Assistant: {response}")
         return response
 
-
-chain = SimpleConversationChain(llm=Ollama(), template=template)
+# Bigger 6GB llama2
+#chain = SimpleConversationChain(llm=Ollama(), template=template)
+# Smaller 3GB llama2:7b
+chain = SimpleConversationChain(llm=Ollama(model="llama2:7b"), template=template)
